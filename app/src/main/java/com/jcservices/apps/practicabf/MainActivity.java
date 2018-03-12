@@ -1,9 +1,13 @@
 package com.jcservices.apps.practicabf;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.jcservices.apps.practicabf.bean.Product;
+import com.jcservices.apps.practicabf.events.OnProductSelected;
+
+public class MainActivity extends AppCompatActivity implements OnProductSelected {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -12,7 +16,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
+    @Override
+    public void onClickProduct(Product product) {
+        //Intent intent = new Intent(this, ProductSelectedFragment.class);
+        Toast.makeText(this, "Product: " + product, Toast.LENGTH_SHORT).show();
+    }
 }

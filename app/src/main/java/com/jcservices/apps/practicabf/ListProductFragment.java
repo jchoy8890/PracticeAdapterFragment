@@ -1,12 +1,24 @@
 package com.jcservices.apps.practicabf;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.jcservices.apps.practicabf.adapter.ProductAdapter;
+import com.jcservices.apps.practicabf.bean.Product;
+import com.jcservices.apps.practicabf.events.ClickListener;
+import com.jcservices.apps.practicabf.events.OnProductSelected;
+import com.jcservices.apps.practicabf.events.RecyclerViewOnTouch;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -27,7 +39,10 @@ public class ListProductFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnProductSelected mListener;
+    private List<Product> lstProducts;
+    private RecyclerView recyclerView;
+
 
     public ListProductFragment() {
         // Required empty public constructor
@@ -64,21 +79,41 @@ public class ListProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_product, container, false);
+        View view = inflater.inflate(R.layout.fragment_list_product, container, false);
+        loadFragment(view);
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    // Load RecyclerView before load data
+    private void loadFragment(View view) {
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_products);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addOnItemTouchListener(new RecyclerViewOnTouch(getActivity(), recyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                if(lstProducts!=null){
+                    Product product = lstProducts.get(position);
+                    //gotoDetails(starWarsEvent);
+                    Log.v("CONSOLE", " Product "+product);
+                    if(mListener!=null){
+                        mListener.onClickProduct(product);
+                    }
+                }
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
     }
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnProductSelected) {
+            mListener = (OnProductSelected) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -91,18 +126,35 @@ public class ListProductFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        loadData();
     }
+
+
+    private void loadData() {
+        lstProducts = new ArrayList<Product>();
+        Product product = new Product();
+        product.setId(1);
+        product.setDescription("Manzana originaria de Perú, producida en la Sierra central");
+        product.setName("Manzana de Agua");
+        product.setPrice(5.5);
+        product.setUrlImage("https://vignette.wikia.nocookie.net/risassonrisas-y-carcajadas/images/7/7d/Apple.png/revision/latest?cb=20140131000944&path-prefix=es");
+        lstProducts.add(product);
+        lstProducts.add(product);
+        lstProducts.add(product);
+        lstProducts.add(product);
+        lstProducts.add(product);
+        lstProducts.add(product);
+        lstProducts.add(product);
+        lstProducts.add(product);
+        lstProducts.add(product);
+        lstProducts.add(product);
+        lstProducts.add(product);
+        recyclerView.setAdapter(new ProductAdapter(this.lstProducts, getActivity()));
+
+    }
+
+
 }

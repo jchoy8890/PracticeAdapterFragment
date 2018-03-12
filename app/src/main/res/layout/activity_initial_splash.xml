@@ -8,10 +8,11 @@
 
 
     <ImageView
+        android:id="@+id/imgSplash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/ic_launcher"
         tools:src="@mipmap/ic_launcher"
         android:adjustViewBounds="true"/>
-
+<!--
+        android:src="http://www.freepngimg.com/download/fruit/4-2-fruit-png-image.png"-->
 </android.support.constraint.ConstraintLayout>
