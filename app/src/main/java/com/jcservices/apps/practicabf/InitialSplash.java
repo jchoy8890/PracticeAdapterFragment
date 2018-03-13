@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 public class InitialSplash extends AppCompatActivity {
 
-    private final int SPLASH_DURATION = 5000;
+    private final int SPLASH_DURATION = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
