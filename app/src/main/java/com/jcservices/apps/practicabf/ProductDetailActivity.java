@@ -3,7 +3,7 @@ package com.jcservices.apps.practicabf;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ProductDetail extends AppCompatActivity {
+public class ProductDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

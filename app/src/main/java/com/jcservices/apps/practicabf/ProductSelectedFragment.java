@@ -4,12 +4,15 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.jcservices.apps.practicabf.bean.Product;
 import com.jcservices.apps.practicabf.events.OnProductSelected;
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -31,6 +34,10 @@ public class ProductSelectedFragment extends Fragment {
     private String mParam2;
 
     private OnProductSelected mListener;
+    private Product product;
+    private ImageView imgProduct;
+    private TextView txtName, txtDescription, txtPrice;
+
 
     public ProductSelectedFragment() {
         // Required empty public constructor
@@ -68,13 +75,30 @@ public class ProductSelectedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_selected, container, false);
+        View view = inflater.inflate(R.layout.fragment_product_selected, container, false);
+        imgProduct = view.findViewById(R.id.imgViewProduct);
+        txtName = view.findViewById(R.id.txtNameProduct);
+        txtDescription = view.findViewById(R.id.txtDescriptionProduct);
+        txtPrice = view.findViewById(R.id.txtPriceProduct);
+        return view;
     }
 
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if (getActivity().getIntent() != null && getActivity().getIntent().getExtras() != null)
+            this.product = (Product) getActivity().getIntent().getExtras().getParcelable("Product");
+        populateProduct();
+    }
+
+    private void populateProduct() {
+        if (product != null) {
+            Picasso.with(getActivity()).load(product.getUrlImage()).into(imgProduct);
+            txtDescription.setText(product.getDescription());
+            txtName.setText(product.getName());
+            txtPrice.setText("S/ " + product.getPrice());
+        }
     }
 
     @Override
@@ -92,6 +116,11 @@ public class ProductSelectedFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void showDetailProduct(Product product) {
+        this.product = product;
+        populateProduct();
     }
 
 
