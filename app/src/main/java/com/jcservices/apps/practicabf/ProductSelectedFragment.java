@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,10 +77,10 @@ public class ProductSelectedFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product_selected, container, false);
-        imgProduct = view.findViewById(R.id.imgViewProduct);
-        txtName = view.findViewById(R.id.txtNameProduct);
-        txtDescription = view.findViewById(R.id.txtDescriptionProduct);
-        txtPrice = view.findViewById(R.id.txtPriceProduct);
+        imgProduct = view.findViewById(R.id.imageViewProductSelected);
+        txtName = view.findViewById(R.id.txtNameProductSelected);
+        txtDescription = view.findViewById(R.id.txtDescriptionProductSelected);
+        txtPrice = view.findViewById(R.id.txtPriceProductSelected);
         return view;
     }
 

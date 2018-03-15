@@ -1,9 +1,13 @@
 package com.jcservices.apps.practicabf;
 
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Toast;
 
 import com.jcservices.apps.practicabf.bean.Product;
 import com.jcservices.apps.practicabf.events.OnProductSelected;
@@ -14,6 +18,10 @@ public class MainActivity extends AppCompatActivity implements OnProductSelected
 
     ProductSelectedFragment productSelectedFragment;
 
+    FloatingActionButton btnAdd;
+
+    private Context ctx;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,14 +31,21 @@ public class MainActivity extends AppCompatActivity implements OnProductSelected
     }
 
     private void loadUI() {
+        ctx = this;
         productSelectedFragment = (ProductSelectedFragment) fManager.findFragmentById(R.id.fragmentDetailsProducts);
+        btnAdd = (FloatingActionButton) findViewById(R.id.btnAddProduct);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ctx,"Add", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
     @Override
     public void onClickProduct(Product product) {
         if (productSelectedFragment != null) {
-
             sendDataToFragment(product);
         } else {
             startActivityDetailProduct(product);
