@@ -9,25 +9,47 @@
     tools:context="com.jcservices.apps.practicabf.MainActivity">
 
 
-    <fragment
-        android:id="@+id/fragmentLstProducts"
-        android:name="com.jcservices.apps.practicabf.ListProductFragment"
-        class="com.jcservices.apps.practicabf.ListProductFragment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="6"
-        tools:layout="@layout/fragment_list_product" />
-
-
-    <fragment
-        android:id="@+id/fragmentDetailsProducts"
-        android:name="com.jcservices.apps.practicabf.ProductSelectedFragment"
-        class="com.jcservices.apps.practicabf.ProductSelectedFragment"
+    <FrameLayout
+        android:id="@+id/frameListProduct"
+        tools:layout="@layout/fragment_list_product"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="4"
-        tools:layout="@layout/fragment_product_selected" />
+        android:layout_weight="6" />
+
+    <FrameLayout
+        android:id="@+id/frameDetailProduct"
+        tools:layout="@layout/fragment_product_selected"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4" />
+
+    <!--
+        <fragment
+            android:id="@+id/fragmentLstProducts"
+            android:name="com.jcservices.apps.practicabf.ListProductFragment"
+            class="com.jcservices.apps.practicabf.ListProductFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            tools:layout="@layout/fragment_list_product" />
 
 
+        <fragment
+            android:id="@+id/fragmentDetailsProducts"
+            android:name="com.jcservices.apps.practicabf.ProductSelectedFragment"
+            class="com.jcservices.apps.practicabf.ProductSelectedFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            tools:layout="@layout/fragment_product_selected" />
 
+    -->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnAddProduct"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_add_white_24dp" />
 </LinearLayout>

@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PracticeAdapterFragment.iml" filepath="$PROJECT_DIR$/PracticeAdapterFragment.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\jchoy\personal\android\PracticeAdapterFragment\exercise_adapter_fragment.iml" filepath="C:\jchoy\personal\android\PracticeAdapterFragment\exercise_adapter_fragment.iml" />
     </modules>
   </component>
 </project>
