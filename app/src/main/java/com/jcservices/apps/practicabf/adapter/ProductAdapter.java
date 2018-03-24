@@ -39,7 +39,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.txtName.setText(product.getName());
         holder.txtPrice.setText("S/ " + product.getPrice());
         holder.txtDescription.setText(product.getDescription());
-        Picasso.with(this.ctx).load(product.getUrlImage()).into(holder.imageView);
+        if (product.getUrlImage() != null)
+            Picasso.with(this.ctx).load(product.getUrlImage()).into(holder.imageView);
     }
 
     @Override

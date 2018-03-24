@@ -6,7 +6,7 @@
     tools:context="com.jcservices.apps.practicabf.ProductDetailActivity">
 
     <FrameLayout
-        android:id="@+id/frameDetailProduct"
+        android:id="@+id/frameDetailProduct2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

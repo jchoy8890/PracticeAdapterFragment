@@ -1,9 +1,9 @@
 package com.jcservices.apps.practicabf;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -92,11 +92,11 @@ public class ListProductFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerViewOnTouch(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                if(lstProducts!=null){
+                if (lstProducts != null) {
                     Product product = lstProducts.get(position);
                     //gotoDetails(starWarsEvent);
-                    Log.v("CONSOLE", " Product "+product);
-                    if(mListener!=null){
+                    Log.v("CONSOLE", " Product " + product);
+                    if (mListener != null) {
                         mListener.onClickProduct(product);
                     }
                 }
@@ -138,20 +138,17 @@ public class ListProductFragment extends Fragment {
         lstProducts = new ArrayList<Product>();
         Product product = new Product();
         product.setId(1);
-        product.setDescription("Manzana originaria de Perú, producida en la Sierra central");
-        product.setName("Manzana de Agua");
+        product.setDescription("Manzana");
+        product.setName("Fruta");
         product.setPrice(5.5);
         product.setUrlImage("https://vignette.wikia.nocookie.net/risassonrisas-y-carcajadas/images/7/7d/Apple.png/revision/latest?cb=20140131000944&path-prefix=es");
         lstProducts.add(product);
-        lstProducts.add(product);
-        lstProducts.add(product);
-        lstProducts.add(product);
-        lstProducts.add(product);
-        lstProducts.add(product);
-        lstProducts.add(product);
-        lstProducts.add(product);
-        lstProducts.add(product);
-        lstProducts.add(product);
+        product = new Product();
+        product.setId(1);
+        product.setDescription("Zanahoria");
+        product.setName("Verdura");
+        product.setPrice(5.5);
+        product.setUrlImage(null);
         lstProducts.add(product);
         recyclerView.setAdapter(new ProductAdapter(this.lstProducts, getActivity()));
 
